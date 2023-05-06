@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useCallback, useState } from "react";
 import ReactFlow, {
   Background,
@@ -13,7 +14,7 @@ import "./App.css";
 import CustomEdge from "./CustomEdge";
 
 import { useSelector, useDispatch } from "react-redux";
-import { addNode, removeNode, addEdges, removeEdge } from "./graphSlice";
+import { addNode, removeNode } from "./graphSlice";
 
 
 const CustomNode = ({ data, id }) => {
