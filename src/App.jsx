@@ -12,10 +12,16 @@ import "reactflow/dist/style.css";
 import "./App.css";
 import CustomEdge from "./CustomEdge";
 
-const CustomNode = ({ data }) => {
+import { useSelector, useDispatch } from "react-redux";
+import { addNode, removeNode, addEdges, removeEdge } from "./graphSlice";
+
+
+const CustomNode = ({ data, id }) => {
   const [showCloseIcon, setShowCloseIcon] = useState(false);
-  const handleRemove = () => {
-    alert("Node Removal Request!");
+  const dispatch = useDispatch();
+  const handleRemove = (nodeId) => {
+    alert("Node Removal Request! for "+ nodeId);
+    dispatch(removeNode(nodeId));
   };
   return (
     <div
@@ -27,7 +33,12 @@ const CustomNode = ({ data }) => {
     >
       {data.label}
       {showCloseIcon && (
-        <div className="close-icon" onClick={handleRemove}>
+        <div
+          className="close-icon"
+          onClick={() => {
+            handleRemove(id);
+          }}
+        >
           x
         </div>
       )}
@@ -45,11 +56,14 @@ const nodeTypes = {
 };
 
 export default function App() {
-  const [elements, setElements] = useState([]);
-  const [edges, setEdges] = useState([]);
+  const nodes = useSelector((state) => state.graph.nodes);
+  const branches = useSelector((state) => state.graph.edges);
+  const [elements, setElements] = useState(nodes);
+  const [edges, setEdges] = useState(branches);
+  const dispatch = useDispatch();
 
-  console.log(elements)
-  console.log(edges)
+  console.log("Redux Store Node Data:",nodes);
+  console.log("Redux Store Branch Data:",branches);
 
   const onNodesChange = useCallback(
     (changes) => setElements((nds) => applyNodeChanges(changes, nds)),
@@ -86,31 +100,31 @@ export default function App() {
       },
     };
     setElements((els) => els.concat(newNode));
+    dispatch(addNode(newNode));
   };
 
   return (
     <>
-      <div style={{ height: "100vh", width: "100vw" }}>
-        <button onClick={handleCreateNode} className="create-node__btn">
-          Create Node
-        </button>
-        <ReactFlow
-          nodes={elements}
-          nodeTypes={nodeTypes}
-          onNodesChange={onNodesChange}
-          edges={edges}
-          onEdgesChange={onEdgesChange}
-          onConnect={onConnect}
-          snapToGrid={true}
-          edgeTypes={edgeTypes}
-          attributionPosition="top-right"
-        >
-          <Background />
-          <Controls showInteractive={false}>
-            <button></button>
-          </Controls>
-        </ReactFlow>
-      </div>
+        <div style={{ height: "100vh", width: "100vw" }}>
+          <button onClick={handleCreateNode} className="create-node__btn">
+            Create Node
+          </button>
+          <ReactFlow
+            nodes={elements}
+            nodeTypes={nodeTypes}
+            onNodesChange={onNodesChange}
+            edges={edges}
+            onEdgesChange={onEdgesChange}
+            onConnect={onConnect}
+            snapToGrid={true}
+            edgeTypes={edgeTypes}
+          >
+            <Background />
+            <Controls showInteractive={false}>
+              <button></button>
+            </Controls>
+          </ReactFlow>
+        </div>
     </>
   );
 }
