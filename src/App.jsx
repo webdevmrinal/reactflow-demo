@@ -12,7 +12,7 @@ import "reactflow/dist/style.css";
 import "./App.css";
 import CustomEdge from "./CustomEdge";
 
-const CustomNode = ({ data, id }) => {
+const CustomNode = ({ data }) => {
   const [showCloseIcon, setShowCloseIcon] = useState(false);
   const handleRemove = () => {
     alert("Node Removal Request!");
@@ -47,6 +47,9 @@ const nodeTypes = {
 export default function App() {
   const [elements, setElements] = useState([]);
   const [edges, setEdges] = useState([]);
+
+  console.log(elements)
+  console.log(edges)
 
   const onNodesChange = useCallback(
     (changes) => setElements((nds) => applyNodeChanges(changes, nds)),
