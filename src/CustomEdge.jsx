@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const onEdgeClick = (evt, id) => {
   evt.stopPropagation();
-  alert("edge clicked");
+  alert("edge removal request!");
 };
 const foreignObjectSize = 40;
 export default function CustomEdge({
@@ -37,7 +37,6 @@ export default function CustomEdge({
         d={edgePath}
         markerEnd={markerEnd}
         onMouseEnter={() => setShowButton(true)}
-        // onMouseLeave={() => setShowButton(false)}
       />
       {showButton && (
         <foreignObject
