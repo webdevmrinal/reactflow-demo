@@ -1,0 +1,33 @@
+.create-node__btn {
+    position: absolute;
+    top: 1em;
+    left: 0.5em;
+    z-index: 1;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    border: none;
+    background-color: hsl(217, 77%, 60%);
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+  .create-node__btn:hover {
+    background-color: hsl(210, 100%, 40%);
+  }
+  .react-flow__node{
+    border-color: blue;
+  }
+  .react-flow__node::after{
+    content: "-";
+    height: 10px;
+    color: white;
+    font-weight: 600;
+    line-height: 1;
+    width: 10px;
+    border-radius: 50%;
+    background-color: red;
+    position: absolute;
+    right: -5px;
+    top: calc(50% - 5px);
+    cursor: pointer;
+  }

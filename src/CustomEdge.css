@@ -1,0 +1,26 @@
+.edgebutton {
+  width: 12px;
+  height: 12px;
+  background: #f00;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.edgebutton:hover {
+  background: #6d0000;
+}
+
+.edgebutton-foreignobject div {
+  background: transparent;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 40px;
+}
