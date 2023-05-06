@@ -1,33 +1,47 @@
 .create-node__btn {
-    position: absolute;
-    top: 1em;
-    left: 0.5em;
-    z-index: 1;
-    padding: 0.5em 1.5em;
-    border-radius: 5px;
-    border: none;
-    background-color: hsl(217, 77%, 60%);
-    color: white;
-    font-size: 1.2em;
-    cursor: pointer;
-  }
-  .create-node__btn:hover {
-    background-color: hsl(210, 100%, 40%);
-  }
-  .react-flow__node{
-    border-color: blue;
-  }
-  .react-flow__node::after{
-    content: "-";
-    height: 10px;
-    color: white;
-    font-weight: 600;
-    line-height: 1;
-    width: 10px;
-    border-radius: 50%;
-    background-color: red;
-    position: absolute;
-    right: -5px;
-    top: calc(50% - 5px);
-    cursor: pointer;
-  }
+  position: absolute;
+  top: 1em;
+  left: 0.5em;
+  z-index: 1;
+  padding: 0.5em 1.5em;
+  border-radius: 5px;
+  border: none;
+  background-color: hsl(217, 77%, 60%);
+  color: white;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+.create-node__btn:hover {
+  background-color: hsl(210, 100%, 40%);
+}
+.custom-node {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border: 2px solid hsl(210, 100%, 40%);
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+}
+
+.close-icon {
+  display: none;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: red;
+  color: #fff;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.custom-node:hover .close-icon {
+  display: block;
+}

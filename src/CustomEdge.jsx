@@ -1,5 +1,5 @@
 import { getBezierPath } from "reactflow";
-import './CustomEdge.css'
+import "./CustomEdge.css";
 import { useState } from "react";
 
 const onEdgeClick = (evt, id) => {
@@ -26,6 +26,8 @@ export default function CustomEdge({
     targetY,
     targetPosition,
   });
+  const [showButton, setShowButton] = useState(false);
+
   return (
     <>
       <path
@@ -34,24 +36,28 @@ export default function CustomEdge({
         className="react-flow__edge-path"
         d={edgePath}
         markerEnd={markerEnd}
+        onMouseEnter={() => setShowButton(true)}
+        // onMouseLeave={() => setShowButton(false)}
       />
-      <foreignObject
-        width={foreignObjectSize}
-        height={foreignObjectSize}
-        x={labelX - foreignObjectSize / 2}
-        y={labelY - foreignObjectSize / 2}
-        className="edgebutton-foreignobject"
-        requiredExtensions="http://www.w3.org/1999/xhtml"
-      >
-        <div>
-          <button
-            className="edgebutton"
-            onClick={(event) => onEdgeClick(event, id)}
-          >
-            -
-          </button>
-        </div>
-      </foreignObject>
+      {showButton && (
+        <foreignObject
+          width={foreignObjectSize}
+          height={foreignObjectSize}
+          x={labelX - foreignObjectSize / 2}
+          y={labelY - foreignObjectSize / 2}
+          className="edgebutton-foreignobject"
+          requiredExtensions="http://www.w3.org/1999/xhtml"
+        >
+          <div>
+            <button
+              className="edgebutton"
+              onClick={(event) => onEdgeClick(event, id)}
+            >
+              x
+            </button>
+          </div>
+        </foreignObject>
+      )}
     </>
   );
 }
